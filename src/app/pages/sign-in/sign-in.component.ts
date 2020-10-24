@@ -1,9 +1,9 @@
-// import { signIn } from './../../store/actions/auth.action';
+import { signIn } from './../../store/actions/auth.action';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-// import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-// import { IStore } from 'src/app/store/reducers';
+import { IStore } from 'src/app/store/reducers';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AbstractForm } from 'src/app/shared/form-helper';
 @Component({
@@ -14,11 +14,11 @@ import { AbstractForm } from 'src/app/shared/form-helper';
 })
 export class SignInComponent extends AbstractForm implements OnInit {
   public constructor(private fb: FormBuilder,
-    //  private store: Store<IStore>
+     private store: Store<IStore>
      ) {
     super();
   }
-  public form:any;
+
   public user$: Observable<any>;
 
   public ngOnInit(): void {
@@ -29,11 +29,11 @@ export class SignInComponent extends AbstractForm implements OnInit {
   }
 
   public signin(): void {
-  //   this.store.dispatch(
-  //     signIn({
-  //       email: this.getField('email').value,
-  //       password: this.getField('password').value,
-  //     }),
-  //   );
+    this.store.dispatch(
+      signIn({
+        email: this.getField('email').value,
+        password: this.getField('password').value,
+      }),
+    );
   }
 }

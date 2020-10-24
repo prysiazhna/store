@@ -1,0 +1,46 @@
+.main {
+  width: 500px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  &-header {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+  }
+  &-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &-buttons {
+      display: flex;
+      margin-top: 3rem;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+
+      .btn {
+        &-customer,
+        &-manager {
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}
+.mat-card {
+  background: #f9f5f5;
+}

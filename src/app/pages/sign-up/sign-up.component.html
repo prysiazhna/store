@@ -1,0 +1,45 @@
+
+  <div class="signup-content"*ngIf="form">
+    <form [formGroup]="form" (submit)="signup()">
+      <mat-card class="signup-content-form">
+        <p class="signup-content-logo">Sign up to continue</p>
+        <mat-form-field>
+          <input matInput formControlName="email" placeholder="Email" />
+          <mat-error
+            *ngIf="getField('email').invalid && getField('email').touched"
+            >Email must be a valid email
+          </mat-error>
+          <mat-error *ngIf="getField('email').errors?.required"
+            >Email is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="password" placeholder="Password" />
+          <mat-error *ngIf="getField('password').errors?.required"
+            >Password is required
+          </mat-error>
+          <mat-error *ngIf="getField('password').errors?.minlength">
+            Password must be at least 6 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="cpassword"
+            placeholder="Confirm password"
+          />
+          <mat-error *ngIf="getField('cpassword').errors?.required"
+            >Confirm Password is required</mat-error
+          >
+        </mat-form-field>
+        <button type="submit" mat-button class="btn">Sign Up</button>
+        <p class="signup-content-signin">
+          Already have an account <a routerLink="/signin">Sign in</a>
+        </p>
+      </mat-card>
+    </form>
+  </div>
+
+<!-- [disabled]="
+signupForm.invalid || signupForm.pending || signupForm.pristine
+" -->

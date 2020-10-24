@@ -1,0 +1,23 @@
+<mat-card class="main">
+  <div class="main-header">
+    <button type="submit" mat-button class="btn-logout" (click)="logout()">
+      Logout
+    </button>
+  </div>
+  <div class="main-content">
+    <strong>Continue as</strong>
+    <div class="main-content-buttons">
+      <button
+        type="submit"
+        mat-button
+        class="btn-customer"
+        (click)="customer()"
+      >
+        Customer
+      </button>
+      <button type="submit" mat-button class="btn-manager" (click)="manager()">
+        Manager
+      </button>
+    </div>
+  </div>
+</mat-card>

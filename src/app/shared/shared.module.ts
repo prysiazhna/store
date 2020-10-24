@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ValidatorsService } from './services/validators.service';
 @NgModule({
   declarations: [ ],
   imports: [CommonModule],
@@ -16,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
   ],
   // providers: [
@@ -26,7 +29,7 @@ export class SharedModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      // providers: [ValidatorsService],
+      providers: [ValidatorsService],
     };
   }
 }
