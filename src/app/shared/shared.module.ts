@@ -1,4 +1,3 @@
-
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ValidatorsService } from './services/validators.service';
 @NgModule({
-  declarations: [ ],
+  declarations: [],
   imports: [CommonModule],
   exports: [
     CommonModule,
@@ -21,9 +20,6 @@ import { ValidatorsService } from './services/validators.service';
     MatSnackBarModule,
     ReactiveFormsModule,
   ],
-  // providers: [
-  //   { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-  // ],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {

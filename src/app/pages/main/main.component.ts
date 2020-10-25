@@ -18,19 +18,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class MainComponent implements OnInit {
   public products: IProduct[];
   public userId: string;
-  constructor(
-    private store: Store<IStore>,
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-  ) {}
+  constructor(private store: Store<IStore>, private afAuth: AngularFireAuth) {}
 
-  ngOnInit(): void {
-    // this.afs.collection('product').doc('po7kNvJuP2ebN0yTSeENjLU7Soe3').set({
-    //   id: 'po7kNvJuP2ebN0yTSeENjLU7Soe3',
-    //   name: 'Lorem ipsum',
-    //   price: 250,
-    //   status: false,
-    // });
+  public ngOnInit(): void {
     this.afAuth.onAuthStateChanged(user => (this.userId = user.uid));
     this.store.dispatch(getProductsPending());
     this.store.select('product').subscribe(products => {

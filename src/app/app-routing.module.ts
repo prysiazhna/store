@@ -28,6 +28,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'admin-panel',
+    loadChildren: () =>
+      import('./pages/admin-panel/admin-panel.module').then(
+        m => m.AdminPanelModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'select-role',
     loadChildren: () =>
       import('./pages/select-role/select-role.module').then(

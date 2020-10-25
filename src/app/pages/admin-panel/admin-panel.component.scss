@@ -2,25 +2,27 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
 
   &-item {
     display: flex;
-    min-height: 8rem;
-    margin: 2rem;
-    width: 10rem;
-    justify-content: center;
+    min-height: 2rem;
+    margin: 1rem;
+    width: 30rem;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    &-text {
+      padding: 0;
+      margin: 0;
+    }
   }
 }
 .mat-card {
   background: #f9f5f5;
 }
-.mat-button {
-  background: #ccc;
-}
+
 .btn-logout {
   margin: 1rem;
 }

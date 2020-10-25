@@ -21,32 +21,14 @@ export class AdminPanelComponent implements OnInit {
     private afs: AngularFirestore,
   ) {}
 
-  ngOnInit(): void {
-    // this.afs.collection('product').doc('po7kNvJuP2ebN0yTSeENjLU7Soe3').set({
-    //   id: 'po7kNvJuP2ebN0yTSeENjLU7Soe3',
-    //   name: 'Lorem ipsum',
-    //   price: 250,
-    //   status: false,
-    // });
+  public ngOnInit(): void {
     this.afAuth.onAuthStateChanged(user => (this.userId = user.uid));
     this.store.dispatch(getProductsPending());
     this.store.select('product').subscribe(products => {
-      this.products = products.items;
+      this.products = products.items.filter(p => p.status === true);
     });
   }
-  // public buy(product: IProduct): void {
-  //   this.store.dispatch(
-  //     updateProductPending({
-  //       product: {
-  //         name: product.name,
-  //         price: product.price,
-  //         userId: this.userId,
-  //         id: product.id,
-  //         status: product.status,
-  //       },
-  //     }),
-  //   );
-  // }
+
   public logout(): void {
     this.store.dispatch(logout());
   }

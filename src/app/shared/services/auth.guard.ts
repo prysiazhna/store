@@ -28,7 +28,6 @@ export class AuthGuard implements CanActivate {
     return this.afAuth.authState.pipe(
       take(1),
       switchMap((user: firebase.User) => {
-        // console.log(user);
         if (!user && (url === '/signin' || url === '/signup')) {
           return of(true);
         }

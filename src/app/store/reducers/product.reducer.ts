@@ -1,17 +1,3 @@
-import {
-  signUp,
-  signUpError,
-  signIn,
-  signInSuccess,
-  signInError,
-  authenticated,
-  notAuthenticated,
-  logout,
-  authError,
-  updateUser,
-  updateUserSuccess,
-  updateUserError,
-} from './../actions/auth.action';
 import { createReducer, on } from '@ngrx/store';
 import {
   getProductsPending,
@@ -19,10 +5,7 @@ import {
   updateProductPending,
   updateProductSuccess,
 } from '../actions/product.action';
-interface TimeStamp {
-  seconds: number;
-  nanoSeconds: number;
-}
+
 export interface IProductState {
   items: IProduct[];
   loading: boolean;
@@ -33,7 +16,7 @@ export interface IProduct {
   price: number;
   userId: string;
   status: boolean;
-  date: Date;
+  date: Date | string;
 }
 
 export const productReducer = createReducer(
@@ -50,6 +33,7 @@ export const productReducer = createReducer(
     items: products,
     loading: false,
   })),
+
   on(updateProductPending, (state: IProductState) => ({
     ...state,
     loading: true,

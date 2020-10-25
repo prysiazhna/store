@@ -4,39 +4,18 @@ import {
   updateProductSuccess,
 } from './../actions/product.action';
 import { IProduct } from './../reducers/product.reducer';
-import {
-  signUp,
-  signUpSuccess,
-  signUpError,
-  signIn,
-  signInError,
-  signInSuccess,
-  authenticated,
-  notAuthenticated,
-  checkLogin,
-  logout,
-  authError,
-  updateUser,
-  updateUserError,
-  updateUserSuccess,
-} from '../actions/auth.action';
-
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Actions, createEffect,  ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 import {
   switchMap,
   map,
   catchError,
-  mergeMap,
   withLatestFrom,
   tap,
 } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
-import { go } from '../actions/router.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IStore } from '../reducers';
 import {
@@ -103,4 +82,5 @@ export class ProductEffects {
       ),
     ),
   );
+
 }

@@ -37,11 +37,11 @@ export class SelectRoleComponent implements OnInit {
     //     docId = data.map(e => e.payload.doc.id);
     //   });
   }
-  public logout() {
+  public logout(): void {
     this.store.dispatch(logout());
   }
 
-  public selectRole(role: string) {
+  public selectRole(role: string): void {
     this.store.dispatch(updateUser({ role, uid: this.userId }));
   }
 }

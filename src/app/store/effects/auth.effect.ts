@@ -142,7 +142,20 @@ export class AuthEffects {
                 ...(data[0].payload.doc.data() as any),
                 isLogged: true,
               };
-              return [signInSuccess(user), go({ path: ['main'] })];
+              // let dataList: { id: any; data: any }[];
+              // const dataCollection = firebase.firestore().collection('users');
+              // dataCollection.get(query => {
+              //   query.forEach(doc => {
+              //     dataList.push({ id: doc.id, data: doc.data() });
+              //   });
+              // });
+              // console.log(dat);
+              return [
+                signInSuccess(user),
+                go({
+                  path: [payload.role === 'customer' ? 'main' : 'admin-panel'],
+                }),
+              ];
             }),
             catchError(err => {
               this.snackBar.open('Sign in error', '', {
@@ -178,7 +191,11 @@ export class AuthEffects {
             .doc(payload.uid)
             .update({ role: payload.role }),
         ).pipe(
-          map(() => go({ path: ['main'] })),
+          map(() =>
+            go({
+              path: [payload.role === 'customer' ? 'main' : 'admin-panel'],
+            }),
+          ),
           catchError(_ => {
             return of(updateUserError());
           }),
