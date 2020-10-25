@@ -1,8 +1,5 @@
 import { IProduct } from './../../store/reducers/product.reducer';
-import {
-  getProductsPending,
-  updateProductPending,
-} from './../../store/actions/product.action';
+import { getProductsPending } from './../../store/actions/product.action';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logout } from 'src/app/store/actions/auth.action';
@@ -11,11 +8,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-admin-panel',
+  templateUrl: './admin-panel.component.html',
+  styleUrls: ['./admin-panel.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class AdminPanelComponent implements OnInit {
   public products: IProduct[];
   public userId: string;
   constructor(
@@ -37,21 +34,19 @@ export class MainComponent implements OnInit {
       this.products = products.items;
     });
   }
-  public buy(product: IProduct): void {
-    const date = new Date();
-    this.store.dispatch(
-      updateProductPending({
-        product: {
-          name: product.name,
-          price: product.price,
-          userId: this.userId,
-          id: product.id,
-          status: product.status,
-          date,
-        },
-      }),
-    );
-  }
+  // public buy(product: IProduct): void {
+  //   this.store.dispatch(
+  //     updateProductPending({
+  //       product: {
+  //         name: product.name,
+  //         price: product.price,
+  //         userId: this.userId,
+  //         id: product.id,
+  //         status: product.status,
+  //       },
+  //     }),
+  //   );
+  // }
   public logout(): void {
     this.store.dispatch(logout());
   }

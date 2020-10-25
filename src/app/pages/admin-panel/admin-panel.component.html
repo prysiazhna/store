@@ -6,15 +6,7 @@
     <mat-card class="cards-item">
       <p>{{ product.name }}</p>
       <p>Price: {{ product.price }}$</p>
-      <button
-        *ngIf="!product.status"
-        type="submit"
-        mat-button
-        class="btn-logout"
-        (click)="buy(product)"
-      >
-        Buy
-      </button>
+
       <strong *ngIf="product.status"> Not available </strong>
     </mat-card>
   </div>
