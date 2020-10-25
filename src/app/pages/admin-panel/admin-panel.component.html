@@ -1,0 +1,12 @@
+<button type="submit" mat-button class="btn-logout" (click)="logout()">
+  Logout
+</button>
+<div class="cards">
+  <div *ngFor="let product of products">
+    <mat-card class="cards-item">
+      <p class="cards-item-text">{{ product.name }}</p>
+      <p class="cards-item-text">Price: {{ product.price }}$</p>
+      <p class="cards-item-text">Ordered at {{ product.date.toDate() | date: 'short' }}</p>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "store-99413": {
+      "hosting": {
+        "store": [
+          "store-99413"
+        ]
+      }
+    }
+  }
+}

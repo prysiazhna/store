@@ -1,0 +1,46 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+
+  .cards {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &-item {
+      display: flex;
+      min-height: 8rem;
+      margin: 2rem;
+      width: 10rem;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+  .cart {
+    background: #ccc;
+    width: 30rem;
+    margin: 2rem;
+    &-item {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+}
+
+.mat-card {
+  background: #f9f5f5;
+}
+.mat-button {
+  background: #ccc;
+  margin: 0 !important;
+}
+.logout {
+  margin: 2rem;
+}

@@ -1,0 +1,37 @@
+<div class="logout"><button type="submit" mat-button class="btn-logout" (click)="logout()">
+  Logout
+</button></div> 
+
+<div class="content">
+  <div class="cards">
+    <div *ngFor="let product of products">
+      <mat-card class="cards-item">
+        <p>{{ product.name }}</p>
+        <p>Price: {{ product.price }}$</p>
+        <button
+          *ngIf="!product.status"
+          type="submit"
+          mat-button
+          class="btn-logout"
+          (click)="buy(product)"
+        >
+          Buy
+        </button>
+        <strong *ngIf="product.status"> Not available </strong>
+      </mat-card>
+    </div>
+  </div>
+  <mat-card *ngIf="cart.length > 0" class="cart">
+    <h4>Your order</h4>
+    <div class="cart-item" *ngFor="let product of cart">
+      <p>{{ product.name }}: {{ product.price }}$</p>
+      <button
+      type="submit"
+      mat-button
+      (click)="cancel(product)"
+    >
+     Cansel
+    </button>
+    </div>
+  </mat-card>
+</div>

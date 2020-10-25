@@ -1,0 +1,22 @@
+.signup-content {
+  width: 500px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &-form {
+    display: flex;
+    flex-direction: column;
+  }
+  &-logo {
+    padding-bottom: 20px;
+    font-size: 22px;
+  }
+
+  &-signin {
+    font-size: 16px;
+    padding-top: 20px;
+    text-align: center;
+  }
+}
