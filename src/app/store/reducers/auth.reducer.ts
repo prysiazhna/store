@@ -7,14 +7,19 @@ import {
   authenticated,
   notAuthenticated,
   logout,
-  authError
+  authError,
+  updateUser,
+  updateUserSuccess,
+  updateUserError,
 } from './../actions/auth.action';
 import { createReducer, on } from '@ngrx/store';
 export interface IAuth {
   uid: string;
   email: string;
-  
+  role: string;
 }
+
+
 export const authReducer = createReducer(
   {},
   on(signUp, (state: IAuth) => ({
@@ -58,18 +63,18 @@ export const authReducer = createReducer(
     ...payload,
     loading: false,
   })),
-  // on(updateUser, (state: IAuth) => ({
-  //   ...state,
-  //   loading: false,
-  // })),
-  // on(updateUserSuccess, (state: IAuth, payload: any) => ({
-  //   ...state,
-  //   ...payload,
-  //   loading: false,
-  // })),
-  // on(updateUserError, (state: IAuth, payload: any) => ({
-  //   ...state,
-  //   error: payload,
-  //   loading: false,
-  // })),
+  on(updateUser, (state: IAuth) => ({
+    ...state,
+    loading: false,
+  })),
+  on(updateUserSuccess, (state: IAuth, payload: any) => ({
+    ...state,
+    ...payload,
+    loading: false,
+  })),
+  on(updateUserError, (state: IAuth, payload: any) => ({
+    ...state,
+    error: payload,
+    loading: false,
+  })),
 );

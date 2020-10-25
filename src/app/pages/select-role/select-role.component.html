@@ -1,4 +1,4 @@
-<!-- <mat-card class="main">
+<mat-card class="main">
   <div class="main-header">
     <button type="submit" mat-button class="btn-logout" (click)="logout()">
       Logout
@@ -11,14 +11,13 @@
         type="submit"
         mat-button
         class="btn-customer"
-        (click)="customer()"
+        (click)="selectRole('customer')"
       >
         Customer
       </button>
-      <button type="submit" mat-button class="btn-manager" (click)="manager()">
+      <button type="submit" mat-button class="btn-manager" (click)="selectRole('manager')">
         Manager
       </button>
     </div>
   </div>
-</mat-card> -->
- <button type="submit" mat-button class="btn-logout" (click)="logout()">  Logout</button>
+</mat-card>

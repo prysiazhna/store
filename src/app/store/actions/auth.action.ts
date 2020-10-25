@@ -52,17 +52,16 @@ export const authError = createAction('[Auth] Error', (payload?: any) => ({
   payload,
 }));
 
-// export const updateUser = createAction(
-//   '[User] organization update',
-//   props<{ name: string; bg_img: string }>(),
-// );
-// export const updateUserSuccess = createAction(
-//   '[User] organization update success',
-//   props<{ name: string; bg_img: string }>(),
-// );
-// export const updateUserError = createAction(
-//   '[User] organization update error',
-//   (payload?: any) => ({
-//     payload,
-//   }),
-// );
+export const updateUser = createAction(
+  '[User] Update',
+  props<{ role: string; uid: string; }>(),
+);
+export const updateUserSuccess = createAction(
+  '[User] Update success',
+);
+export const updateUserError = createAction(
+  '[User] Update error',
+  (payload?: any) => ({
+    payload,
+  }),
+);

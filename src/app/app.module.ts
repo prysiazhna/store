@@ -16,19 +16,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthGuard } from './shared/services/auth.guard';
 import { ValidatorsService } from './shared/services/validators.service';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-     StoreModule.forRoot(reducers),
-    SharedModule.forRoot(),  StoreDevtoolsModule.instrument({
-      maxAge: 25, logOnly: environment.production
+    StoreModule.forRoot(reducers),
+    SharedModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
     }),
     AngularFireModule.initializeApp(environment.firebase),
- 
+
     EffectsModule.forRoot(effects),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -38,8 +38,7 @@ import { ValidatorsService } from './shared/services/validators.service';
     }),
     AngularFireAuthModule,
   ],
-  providers: [   AuthGuard,
-    ValidatorsService],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, ValidatorsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -10,10 +10,13 @@ import {
   checkLogin,
   logout,
   authError,
+  updateUser,
+  updateUserError,
+  updateUserSuccess,
 } from '../actions/auth.action';
 
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 import {
@@ -22,6 +25,7 @@ import {
   catchError,
   mergeMap,
   withLatestFrom,
+  tap,
 } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -40,7 +44,7 @@ export class AuthEffects {
     private store: Store<IStore>,
   ) {}
   // @Effect()
-  // public checkLogin: Observable<any> = this.actions.pipe(
+  // public checkLogin$: Observable<any> = this.actions.pipe(
   //   ofType(checkLogin),
   //   switchMap(payload =>
   //     this.afAuth.authState.pipe(
@@ -73,9 +77,8 @@ export class AuthEffects {
   // );
 
   @Effect()
-  public logout: Observable<Action> = this.actions.pipe(
+  public logout$: Observable<Action> = this.actions.pipe(
     ofType(logout),
-
     map(action => action.payload),
     switchMap(payload => {
       return of(this.afAuth.signOut());
@@ -87,7 +90,7 @@ export class AuthEffects {
   );
 
   @Effect()
-  public signUp: Observable<any> = this.actions.pipe(
+  public signUp$: Observable<any> = this.actions.pipe(
     ofType(signUp),
     map(action => action.payload),
     switchMap(payload =>
@@ -98,22 +101,27 @@ export class AuthEffects {
         ),
       ).pipe(
         mergeMap(authData => {
-          console.log(authData.user);
-
-          this.asf.collection('users').add({
+          this.asf.collection('users').doc(authData.user.uid).set({
             uid: authData.user.uid,
             email: authData.user.email,
-            // name: payload.organization,
-            // count: 0,
           });
-          return [signUpSuccess(), go({ path: [''] })];
+          return [signUpSuccess(), go({ path: ['select-role'] })];
         }),
       ),
     ),
-    catchError(err => of(signUpError(err))),
+    catchError(err => {
+      this.snackBar.open(err, '', {
+        duration: 1500,
+        panelClass: ['snackbar-color'],
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+      return of(signUpError(err));
+    }),
   );
+
   @Effect()
-  public signIn: Observable<any> = this.actions.pipe(
+  public signIn$: Observable<any> = this.actions.pipe(
     ofType(signIn),
     map(action => action.payload),
     switchMap(payload =>
@@ -134,7 +142,7 @@ export class AuthEffects {
                 ...(data[0].payload.doc.data() as any),
                 isLogged: true,
               };
-              return [signInSuccess(user), go({ path: [''] })];
+              return [signInSuccess(user), go({ path: ['main'] })];
             }),
             catchError(err => {
               this.snackBar.open('Sign in error', '', {
@@ -150,7 +158,7 @@ export class AuthEffects {
       ),
     ),
     catchError(err => {
-      this.snackBar.open('Sign in error', '', {
+      this.snackBar.open(err, '', {
         duration: 1500,
         panelClass: ['snackbar-color'],
         horizontalPosition: 'right',
@@ -159,15 +167,23 @@ export class AuthEffects {
       return of(signInError(err));
     }),
   );
-  // @Effect({ dispatch: false })
-  // public updateUser: Observable<void> = this.actions.pipe(
-  //   ofType(updateUser),
-  //   withLatestFrom(this.store.select('auth')),
-  //   switchMap(([payload, auth]) => {
-  //     return this.asf
-  //       .collection('organization')
-  //       .doc(auth.organizationId)
-  //       .update(payload);
-  //   }),
-  // );
+
+  public updateUser$: Observable<any> = createEffect(() =>
+    this.actions.pipe(
+      ofType(updateUser),
+      switchMap(payload =>
+        from(
+          this.asf
+            .collection('users')
+            .doc(payload.uid)
+            .update({ role: payload.role }),
+        ).pipe(
+          map(() => go({ path: ['main'] })),
+          catchError(_ => {
+            return of(updateUserError());
+          }),
+        ),
+      ),
+    ),
+  );
 }

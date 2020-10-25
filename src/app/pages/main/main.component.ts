@@ -17,6 +17,5 @@ export class MainComponent implements OnInit {
   public logout() {
     this.store.dispatch(logout());
   }
-  public manager(){ }
-  public  customer(){ }
+ 
 }
