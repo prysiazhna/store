@@ -1,10 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAuth } from '../reducers/auth.reducer';
 
-export const checkLogin = createAction(
-  '[Auth] Check Login',
-  (payload?: any) => payload,
-);
 
 export const signUp = createAction('[Auth] Sign Up', (payload: any) => ({
   payload,

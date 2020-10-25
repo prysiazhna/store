@@ -6,7 +6,8 @@ import {
 import { ActionReducerMap } from '@ngrx/store';
 import { authReducer, IAuth } from './auth.reducer';
 import * as fromRouter from '@ngrx/router-store';
-import { IProductState, productReducer, reducerProduct } from './product.reducer';
+import { IProductState, productReducer } from './product.reducer';
+
 export interface IStore {
   auth: IAuth;
   product: IProductState;

@@ -13,12 +13,12 @@ import {
   updateUserError,
 } from './../actions/auth.action';
 import { createReducer, on } from '@ngrx/store';
+
 export interface IAuth {
   uid: string;
   email: string;
   role: string;
 }
-
 
 export const authReducer = createReducer(
   {},

@@ -14,7 +14,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthGuard } from './shared/services/auth.guard';
-import { ValidatorsService } from './shared/services/validators.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,7 +37,7 @@ import { ValidatorsService } from './shared/services/validators.service';
     }),
     AngularFireAuthModule,
   ],
-  providers: [AuthGuard, ValidatorsService],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -5,7 +5,7 @@ import {
 } from './../actions/product.action';
 import { IProduct } from './../reducers/product.reducer';
 import { Injectable } from '@angular/core';
-import { Actions, createEffect,  ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 import {
@@ -42,7 +42,6 @@ export class ProductEffects {
           .valueChanges()
           .pipe(
             map(products => {
-              console.log(products);
               return getProductsSuccess({
                 products: products as IProduct[],
               });
@@ -70,7 +69,7 @@ export class ProductEffects {
           tap(() =>
             this.snackBar.open('Success', '', {
               duration: 1500,
-              panelClass: ['snackbar-color'],
+              panelClass: ['snackbar-color-green'],
               horizontalPosition: 'right',
               verticalPosition: 'top',
             }),
@@ -82,5 +81,4 @@ export class ProductEffects {
       ),
     ),
   );
-
 }
